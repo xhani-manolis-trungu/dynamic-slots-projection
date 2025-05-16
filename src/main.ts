@@ -9,7 +9,7 @@ import { SlotDirective } from './slot.directive';
   standalone: true,
   imports: [CommonModule, CardComponent, SlotDirective],
   template: `
-  <app-card [dynamicSlots]="['visit', 'test']">
+  <app-card [dynamicSlots]="['visit', 'experts', 'test']">
     <ng-template appSlot="header">
       <h2>Ενδιαφέρεσαι για αυτό;</h2>
     </ng-template>
@@ -18,8 +18,8 @@ import { SlotDirective } from './slot.directive';
       <button>EXPERTS Μίλησε με τους ειδικούς</button>
     </ng-template>
 
-    <ng-template appSlot="visit">
-      <button>VISIT Κάνε μια προσφορά</button>
+    <ng-template appSlot="visit" let-handleClick="handleClick">
+      <button (click)="handleClick()">VISIT Κάνε μια προσφορά</button>
     </ng-template>
 
     <ng-template appSlot="footer">

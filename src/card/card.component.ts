@@ -17,7 +17,7 @@ import { SlotDirective } from '../slot.directive';
       <!-- Dynamic slots -->
       <ng-container *ngFor="let slotName of filteredSlots">
         <div class="dynamic-slot" [attr.data-slot]="slotName">
-          <ng-container *ngTemplateOutlet="getSlotTemplate(slotName)"></ng-container>
+          <ng-container *ngTemplateOutlet="getSlotTemplate(slotName); context: {handleClick: handleClick}"></ng-container>
         </div>
       </ng-container>
 
@@ -65,6 +65,10 @@ export class CardComponent implements AfterContentInit {
   ngAfterContentInit() {
     this.organizeSlots();
     this.slots.changes.subscribe(() => this.organizeSlots());
+  }
+
+  handleClick() {
+    alert('handled click from loaded template ref');
   }
 
   private organizeSlots() {
